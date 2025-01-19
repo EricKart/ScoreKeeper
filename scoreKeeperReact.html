@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+    <title>SCORE KEEPER</title>
+</head>
+<body>
+
+    <div id="root"></div>
+
+
+    <script type="text/babel">
+        const App = () =>{
+            const[score, setScore] = React.useState(0);
+            const[wicket, setWicket] = React.useState(0);
+
+
+            const updateScore = (runs) =>{
+                setScore(score+runs);
+            }
+            const updateWicket = ()=>{
+                if(wicket<10)  setWicket(wicket+1);
+            }
+
+
+            return(
+                <>
+                <h1>SCORE KEEPER</h1>
+                <h2> SCORE:{score}/{wicket}</h2>
+
+                <div>
+                
+                    {[1,2,3,4,5,6].map((run)=>(
+                        <button key={run} onClick={()=>updateScore(run)}>{run}</button>
+                    ))}
+                    <button onClick={updateWicket}>wicket</button>
+                    
+                </div>
+
+                </>
+            )
+        }
+
+        const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+        rootElement.render(<App />);
+
+    </script>
+</body>
+</html>
